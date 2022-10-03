@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modif_exercise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            margin-top: 80px;
+            background-color: grey;
+            color: black;
+        }
+        .kotak{
+            background-color: whitesmoke;
+            padding-bottom: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 10px;
+        }
+        #song{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body class="container col-4 text-center">
+    <div class="kotak">
+    <h1 class="p-5">Punny Web</h1>
+    <h3 id="artist"></h3>
+    <input id="song" class="text-center form-control" oninput="cariLagu()"><br>
+    <p id="songLyrics"></p>
+    <span class="card-text text-muted bg-white border rounded p-1">
+        Jumlah Karakter : <span id="count"></span>
+    </span>
+    </div>
+    <script>
+        function cariLagu() {
+            let lirik_lagu = {
+                status : true, 
+                data   : {
+                    artist    : "Westlife", 
+                    songTitle : "I Have A Dream", 
+                    songLyrics: "I have a dream, a song to sing\nToy help me cope with anything\nIf you see the wonder (wonder) of a fairy tale\nYou can take the future even if you fail"
+                }
+            }
+
+            let artist = document.getElementById("artist")
+            let songTitle = document.getElementById("songTitle")
+            let songLyrics = document.getElementById("songLyrics")
+            let count = document.getElementById("count")
+
+            let artist_content = lirik_lagu.data.artist
+            let title_content = lirik_lagu.data.songTitle
+            let lyrics_content = lirik_lagu.data.songLyrics.replaceAll("\n", " <br>")
+
+            let song = document.getElementById("song").value
+
+            if (song.toLowerCase().trim() == "i have a dream") {
+                artist.innerHTML = artist_content
+                songLyrics.innerHTML = lyrics_content
+                count.innerHTML = lyrics_content.length
+            }
+            else {
+                artist.innerHTML = ""
+                songLyrics.innerHTML = song
+                count.innerHTML = song.length
+            }
+        }
+
+    </script>
